@@ -143,6 +143,23 @@ select:focus-visible {
   color: var(--text-faint);
 }
 
+.theme-toggle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--text-muted);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
 .pick-button {
   width: 100%;
   height: 44px;
