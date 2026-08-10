@@ -6,9 +6,10 @@
   "description": "Extract — a Chrome colour picker",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run icons && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "icons": "node scripts/generate-icons.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",
