@@ -185,6 +185,21 @@ select:focus-visible {
   transform: scale(0.98);
 }
 
+.pick-error,
+.copy-error {
+  margin: 0;
+  padding: 8px 10px;
+  color: var(--text);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+}
+
+.pick-error {
+  margin-top: -8px;
+}
+
 .section-heading {
   display: flex;
   align-items: center;
@@ -329,6 +344,37 @@ select:focus-visible {
   letter-spacing: 0.01em;
   user-select: none;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 7px 12px;
+  transition: color var(--transition), background-color var(--transition),
+    border-color var(--transition), transform var(--transition);
+}
+
+.copy-button:hover {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+.copy-button--copied {
+  color: var(--primary-text);
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.copy-button--copied:hover {
+  color: var(--primary-text);
+  border-color: var(--primary);
 }
 
 ::selection {
