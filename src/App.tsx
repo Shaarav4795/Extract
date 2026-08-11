@@ -3,10 +3,12 @@ import { Header } from "./components/Header";
 import { HistoryList } from "./components/HistoryList";
 import { InfoPanel } from "./components/InfoPanel";
 import { PipetteIcon } from "./components/icons";
+import { useHistory } from "./hooks/useHistory";
 import { useTheme } from "./hooks/useTheme";
 
 export default function App() {
   const { theme, toggleTheme } = useTheme();
+  const { history, add, clear } = useHistory();
 
   const [currentHex, setCurrentHex] = useState<string | null>(null);
   const [copiedHex, setCopiedHex] = useState<string | null>(null);
@@ -45,13 +47,14 @@ export default function App() {
     try {
       const result = await new dropper().open();
       const hex = result.sRGBHex.toUpperCase();
+      add(hex);
       setCurrentHex(hex);
       setCopyError(null);
     } catch (error) {
       if (error instanceof DOMException && error.name === "AbortError") return;
       setPickError("Unable to pick a colour right now.");
     }
-  }, []);
+  }, [add]);
 
   return (
     <div className="app">
@@ -68,7 +71,15 @@ export default function App() {
           </p>
         )}
 
-        <HistoryList />
+        <HistoryList
+          entries={history}
+          copiedHex={copiedHex}
+          onSelect={(hex) => {
+            setCurrentHex(hex);
+            setCopyError(null);
+          }}
+          onClear={clear}
+        />
 
         <InfoPanel
           hex={currentHex}
