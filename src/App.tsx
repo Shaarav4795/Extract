@@ -5,12 +5,14 @@ import { InfoPanel } from "./components/InfoPanel";
 import { PipetteIcon } from "./components/icons";
 import { useHistory } from "./hooks/useHistory";
 import { useTheme } from "./hooks/useTheme";
+import { formatColour, type ColourFormatId } from "./lib/colour";
 
 export default function App() {
   const { theme, toggleTheme } = useTheme();
   const { history, add, clear } = useHistory();
 
   const [currentHex, setCurrentHex] = useState<string | null>(null);
+  const [format, setFormat] = useState<ColourFormatId>("hex");
   const [copiedHex, setCopiedHex] = useState<string | null>(null);
   const [pickError, setPickError] = useState<string | null>(null);
   const [copyError, setCopyError] = useState<string | null>(null);
@@ -26,13 +28,13 @@ export default function App() {
     async (hex: string) => {
       setCopyError(null);
       try {
-        await navigator.clipboard.writeText(hex);
+        await navigator.clipboard.writeText(formatColour(hex, format));
         flashCopied(hex);
       } catch {
         setCopyError("Unable to copy the colour.");
       }
     },
-    [flashCopied],
+    [format, flashCopied],
   );
 
   const pickColour = useCallback(async () => {
@@ -83,7 +85,9 @@ export default function App() {
 
         <InfoPanel
           hex={currentHex}
+          format={format}
           copied={copiedHex !== null && copiedHex === currentHex}
+          onFormatChange={setFormat}
           onCopy={copyColour}
           copyError={copyError}
         />
