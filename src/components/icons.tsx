@@ -41,6 +41,14 @@ export function PipetteIcon({ size = 18, className }: IconProps) {
   );
 }
 
+export function ChevronIcon({ size = 12, className }: IconProps) {
+  return (
+    <Svg size={size} className={className}>
+      <path d="m6 9 6 6 6-6" />
+    </Svg>
+  );
+}
+
 export function CopyIcon({ size = 14, className }: IconProps) {
   return (
     <Svg size={size} className={className}>
