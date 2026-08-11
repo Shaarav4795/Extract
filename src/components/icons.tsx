@@ -41,6 +41,23 @@ export function PipetteIcon({ size = 18, className }: IconProps) {
   );
 }
 
+export function CopyIcon({ size = 14, className }: IconProps) {
+  return (
+    <Svg size={size} className={className}>
+      <rect x="9" y="9" width="13" height="13" rx="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </Svg>
+  );
+}
+
+export function TickIcon({ size = 14, className }: IconProps) {
+  return (
+    <Svg size={size} className={className} strokeWidth={3}>
+      <path d="M20 6 9 17l-5-5" />
+    </Svg>
+  );
+}
+
 export function SunIcon({ size = 15, className }: IconProps) {
   return (
     <Svg size={size} className={className}>
